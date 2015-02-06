@@ -53,8 +53,8 @@ ScattererPhysicsList::ScattererPhysicsList() : G4VModularPhysicsList()
 
   SetVerboseLevel(1);
 
-  //RegisterPhysics(new G4EmStandardPhysics_option4);
-  RegisterPhysics(new PhysListEmStandardSingleSc);
+  RegisterPhysics(new G4EmStandardPhysics_option4);
+  //RegisterPhysics(new PhysListEmStandardSingleSc);
   RegisterPhysics(new G4HadronPhysicsQGSP_BIC);
   RegisterPhysics(new G4EmExtraPhysics);
   RegisterPhysics(new G4HadronElasticPhysics);

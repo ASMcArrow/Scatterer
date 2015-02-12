@@ -95,7 +95,7 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
 
     for (G4int box = 0; box <= 100; box++)
     {
-            profileFileH << (G4double)(box*60.0/100.0) << " " << horizontal[box] << "\n";
-            profileFileV << (G4double)(box*60.0/100.0) << " " << vertical[box] << "\n";
+            profileFileH << (G4double)(box*6.0/100.0) << " " << horizontal[box] << "\n";
+            profileFileV << (G4double)(box*6.0/100.0) << " " << vertical[box] << "\n";
     }
 }

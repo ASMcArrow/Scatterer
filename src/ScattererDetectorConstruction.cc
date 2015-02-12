@@ -27,7 +27,7 @@ ScattererDetectorConstruction* ScattererDetectorConstruction::Instance = 0;
 ScattererDetectorConstruction::ScattererDetectorConstruction()
 {
     Instance = this;
-    SlabThickness = 4.375*cm;
+    SlabThickness = 2.91*cm;
     DetectorMessenger = new ScattererDetectorMessenger(this);
 }
 
@@ -55,10 +55,10 @@ G4VPhysicalVolume* ScattererDetectorConstruction::Construct()
     G4VPhysicalVolume *worldPhys = new G4PVPlacement(0, G4ThreeVector(), worldLogic, "WorldPhys", 0, false, 0);
     worldLogic->SetVisAttributes(visAttributes);
 
-// // Material Slab
-//    G4Box *materialSlab = new G4Box("MaterialSlab", 5*cm, 5*cm, SlabThickness);
-//    MaterialLogic = new G4LogicalVolume(materialSlab, MaterialMap["Water"], "MaterialLogic");
-//    new G4PVPlacement(0, G4ThreeVector(0, 0, -80.2*cm + SlabThickness), MaterialLogic, "MaterialSlab", worldLogic, 0, 0);
+ // Material Slab
+    G4Box *materialSlab = new G4Box("MaterialSlab", 5*cm, 5*cm, SlabThickness);
+    MaterialLogic = new G4LogicalVolume(materialSlab, MaterialMap["PMMA"], "MaterialLogic");
+    new G4PVPlacement(0, G4ThreeVector(0, 0, -80.2*cm + SlabThickness), MaterialLogic, "MaterialSlab", worldLogic, 0, 0);
 
  // Collimator
     G4Tubs *collimator = new G4Tubs("Collimator", 1.5*mm, 15*cm, 5*cm, 0, 2*CLHEP::pi);

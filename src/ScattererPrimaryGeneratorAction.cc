@@ -30,10 +30,11 @@ ScattererPrimaryGeneratorAction::ScattererPrimaryGeneratorAction()
     position->SetRadius(1.5*mm);
 
     G4SPSAngDistribution* angular = CircleSource->GetAngDist();
-    angular->SetAngDistType("beam1d");
+    angular->SetAngDistType("beam2d");
     angular->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,1.0));
     angular->DefineAngRefAxes("angref1", G4ThreeVector(-1.0,0.0,0.0));
-    angular->SetBeamSigmaInAngR(0.000);
+    angular->SetBeamSigmaInAngX(0.0005*rad);
+    angular->SetBeamSigmaInAngY(0.0011*rad);
 
     CircleSource->SetNumberOfParticles(1);
 

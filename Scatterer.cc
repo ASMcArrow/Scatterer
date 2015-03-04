@@ -39,13 +39,13 @@ int main(int argc,char** argv)
 
 #ifdef G4MULTITHREADED
     G4MTRunManager* runManager = new G4MTRunManager;
-    runManager->SetNumberOfThreads(4);
+    runManager->SetNumberOfThreads(8);
 #else
     G4RunManager* runManager = new G4RunManager;
 #endif
 
     ScattererDetectorConstruction* massWorld = new ScattererDetectorConstruction;
-    massWorld->SetSlabThickness(4.375*cm);
+   // massWorld->SetSlabThickness(4.375*cm);
     massWorld->RegisterParallelWorld(new ScattererParallelWorld("ScattererParallelWorld"));
 
     runManager->SetUserInitialization(massWorld);
@@ -61,7 +61,7 @@ int main(int argc,char** argv)
 #ifndef G4UI_USE
 #ifndef G4VIS_USE
     UImanager->ApplyCommand("/process/msc/StepLimit UseDistanceToBoundary");
-    runManager->BeamOn(1000000);
+    runManager->BeamOn(10000000);
 #endif
 #endif
 

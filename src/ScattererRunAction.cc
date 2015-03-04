@@ -62,9 +62,9 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
         }
     }
 
-    std::ofstream mapFile("ScattererABC.txt");
-    std::ofstream profileFileH("ScattererABC_H.txt");
-    std::ofstream profileFileV("ScattererABC_V.txt");
+    std::ofstream mapFile("ScattererPMMA.txt");
+    std::ofstream profileFileH("ScattererPMMA_H.txt");
+    std::ofstream profileFileV("ScattererPMMA_V.txt");
 
     G4double horizontal[101], vertical[101];
 

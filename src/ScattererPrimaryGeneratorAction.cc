@@ -26,15 +26,15 @@ ScattererPrimaryGeneratorAction::ScattererPrimaryGeneratorAction()
 
     G4SPSPosDistribution* position = CircleSource->GetPosDist();
     position->SetPosDisType("Beam");
-    position->SetCentreCoords(G4ThreeVector(0*m, 0*m, -80.2*cm - 10.1*cm - 0*cm));
-    position->SetRadius(1.5*mm);
+    position->SetBeamSigmaInR(0.4*mm);
+    position->SetCentreCoords(G4ThreeVector(0*m, 0*m, -80.2*cm - 10.5*cm - 0*cm));
 
     G4SPSAngDistribution* angular = CircleSource->GetAngDist();
     angular->SetAngDistType("beam2d");
     angular->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,1.0));
     angular->DefineAngRefAxes("angref1", G4ThreeVector(-1.0,0.0,0.0));
-    angular->SetBeamSigmaInAngX(0.0005*rad);
-    angular->SetBeamSigmaInAngY(0.0011*rad);
+    angular->SetBeamSigmaInAngX(0.000*rad);
+    angular->SetBeamSigmaInAngY(0.000*rad);
 
     CircleSource->SetNumberOfParticles(1);
 

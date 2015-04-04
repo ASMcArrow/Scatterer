@@ -25,6 +25,7 @@
 #include "G4EmParameters.hh"
 #include "PhysListEmStandardSingleSc.hh"
 #include "CLHEP/Units/SystemOfUnits.h"
+#include "G4WentzelVIModel.hh"
 
 using namespace CLHEP;
 
@@ -41,12 +42,12 @@ ScattererPhysicsList::ScattererPhysicsList() : G4VModularPhysicsList()
   emParameters->SetMaxEnergy(200*MeV);
   emParameters->SetNumberOfBinsPerDecade(50);
 
-  emParameters->SetMuHadLateralDisplacement(true);
-  emParameters->SetLateralDisplacement(true);
+//  emParameters->SetMuHadLateralDisplacement(true);
+//  emParameters->SetLateralDisplacement(true);
 
-  emParameters->SetMscStepLimitType(fUseDistanceToBoundary);
-  emParameters->SetMscGeomFactor(2.5);
-  emParameters->SetMscRangeFactor(0.04);
+//  emParameters->SetMscStepLimitType(fUseDistanceToBoundary);
+//  emParameters->SetMscGeomFactor(2.5);
+//  emParameters->SetMscRangeFactor(0.04);
 
   emParameters->SetApplyCuts(true);
   emParameters->SetVerbose(true);
@@ -54,7 +55,7 @@ ScattererPhysicsList::ScattererPhysicsList() : G4VModularPhysicsList()
   SetVerboseLevel(1);
 
   RegisterPhysics(new G4EmStandardPhysics_option4);
-  //RegisterPhysics(new PhysListEmStandardSingleSc);
+  RegisterPhysics(new PhysListEmStandardSingleSc);
   RegisterPhysics(new G4HadronPhysicsQGSP_BIC);
   RegisterPhysics(new G4EmExtraPhysics);
   RegisterPhysics(new G4HadronElasticPhysics);

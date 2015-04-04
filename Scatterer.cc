@@ -66,7 +66,7 @@ int main(int argc,char** argv)
     ui->SessionStart();
     delete ui;
 #else
-    runManager->BeamOn(1000000);
+    runManager->BeamOn(100000000);
 #endif
 
     delete runManager;

@@ -24,7 +24,7 @@ void ScattererParallelWorld::Construct()
 
  // Place volumes in the parallel world here
     G4double detHalfDimension = 3.0*cm;
-    G4double nDivisions = 100.0;
+    G4double nDivisions = 200.0;
     G4double halfBoxWidth = (detHalfDimension/nDivisions);
 
  // The cylinder with concentric circles

@@ -17,9 +17,9 @@ ScattererRunAction::ScattererRunAction(const G4String detectorName) : G4UserRunA
 {
     DetectorName = detectorName;
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 200; i++)
     {
-        for (int j = 0; j < 100; j++)
+        for (int j = 0; j < 200; j++)
             Cells[i][j] = 0;
     }
 }
@@ -62,40 +62,21 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
         }
     }
 
-    std::ofstream mapFile("Scatterer.txt");
-    std::ofstream profileFileH("Scatterer_H.txt");
-    std::ofstream profileFileV("Scatterer_V.txt");
+    std::ofstream mapFile("Scatterer200_10mln.txt");
 
-    G4double horizontal[101], vertical[101];
-
-    for (G4int xBox = 0; xBox <= 100; xBox++)
+    for (G4int xBox = 0; xBox <= 200; xBox++)
     {
         mapFile << "\n";
 
         // bloody gnuplot!
-        for (G4int yBox = 0; yBox <= 100; yBox++)
+        for (G4int yBox = 0; yBox <= 200; yBox++)
         {
-            if ((yBox == 100)||(xBox == 100))
+            if ((yBox == 200)||(xBox == 200))
             {
-                mapFile << (G4double)(xBox*6.0)/100.0 << " " << (G4double)(yBox*6.0/100.0) << " 0 \n";
+                mapFile << (G4double)(xBox*6.0)/200.0 << " " << (G4double)(yBox*6.0/200.0) << " 0 \n";
             }
             else
-                mapFile << (G4double)(xBox*6.0)/100.0 << " " << (G4double)(yBox*6.0/100.0) << " " << Cells[yBox][xBox] << " \n";
-
-            if (yBox == 50)
-                horizontal[xBox] = Cells[yBox][xBox];
-
-            if (xBox == 50)
-                vertical[yBox] = Cells[yBox][xBox];
+                mapFile << (G4double)(xBox*6.0)/200.0 << " " << (G4double)(yBox*6.0/200.0) << " " << Cells[yBox][xBox] << " \n";
         }
-    }
-
-    horizontal[100] = 0;
-    vertical[100] = 0;
-
-    for (G4int box = 0; box <= 100; box++)
-    {
-            profileFileH << (G4double)(box*6.0/100.0) << " " << horizontal[box] << "\n";
-            profileFileV << (G4double)(box*6.0/100.0) << " " << vertical[box] << "\n";
-    }
+    }  
 }

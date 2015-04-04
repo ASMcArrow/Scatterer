@@ -15,8 +15,8 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
 FILE(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 FILE(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
-ADD_EXECUTABLE(Scatterer Scatterer.cc ${sources} ${headers})
-TARGET_LINK_LIBRARIES(Scatterer ${Geant4_LIBRARIES})
+ADD_EXECUTABLE(ScattererWentzel Scatterer.cc ${sources} ${headers})
+TARGET_LINK_LIBRARIES(ScattererWentzel ${Geant4_LIBRARIES})
 
 set(SCATTERER_SCRIPTS
     init_vis.mac)

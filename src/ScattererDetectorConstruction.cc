@@ -27,7 +27,7 @@ ScattererDetectorConstruction* ScattererDetectorConstruction::Instance = 0;
 ScattererDetectorConstruction::ScattererDetectorConstruction()
 {
     Instance = this;
-    SlabThickness = 2.91*cm;
+    SlabThickness = 4.375*cm;
     DetectorMessenger = new ScattererDetectorMessenger(this);
 }
 
@@ -61,7 +61,7 @@ G4VPhysicalVolume* ScattererDetectorConstruction::Construct()
 //    new G4PVPlacement(0, G4ThreeVector(0, 0, -80.2*cm + SlabThickness), MaterialLogic, "MaterialSlab", worldLogic, 0, 0);
 
     G4RotationMatrix* matrix = new G4RotationMatrix;
-    matrix->setTheta(0.028*rad);
+    matrix->setTheta(0.025*rad);
 
     // Collimator
     G4Tubs *collimator = new G4Tubs("Collimator", 1.5*mm, 15*cm, 5*cm, 0, 2*CLHEP::pi);

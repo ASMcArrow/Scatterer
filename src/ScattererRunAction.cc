@@ -62,7 +62,7 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
         }
     }
 
-    std::ofstream mapFile("Scatterer200_10mln.txt");
+    std::ofstream mapFile("ScattererWentzelDistanceToBoundaryDefaultWater.txt");
 
     for (G4int xBox = 0; xBox <= 200; xBox++)
     {
@@ -73,10 +73,10 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
         {
             if ((yBox == 200)||(xBox == 200))
             {
-                mapFile << (G4double)(xBox*6.0)/200.0 << " " << (G4double)(yBox*6.0/200.0) << " 0 \n";
+                mapFile << (G4double)(xBox*12.0)/200.0 << " " << (G4double)(yBox*12.0/200.0) << " 0 \n";
             }
             else
-                mapFile << (G4double)(xBox*6.0)/200.0 << " " << (G4double)(yBox*6.0/200.0) << " " << Cells[yBox][xBox] << " \n";
+                mapFile << (G4double)(xBox*12.0)/200.0 << " " << (G4double)(yBox*12.0/200.0) << " " << Cells[yBox][xBox] << " \n";
         }
     }  
 }

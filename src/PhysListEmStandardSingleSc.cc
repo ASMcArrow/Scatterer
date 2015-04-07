@@ -127,7 +127,7 @@ PhysListEmStandardSingleSc::PhysListEmStandardSingleSc(G4int ver)
     param->SetMaxEnergy(10*TeV);
     param->SetNumberOfBinsPerDecade(20);
     param->ActivateAngularGeneratorForIonisation(true);
-    //param->SetMuHadLateralDisplacement(false);
+    param->SetMuHadLateralDisplacement(true);
     param->SetLatDisplacementBeyondSafety(true);
     SetPhysicsType(bElectromagnetic);
 }
@@ -141,11 +141,11 @@ PhysListEmStandardSingleSc::PhysListEmStandardSingleSc(G4int ver,
     G4EmParameters* param = G4EmParameters::Instance();
     param->SetVerbose(verbose);
     param->SetMinEnergy(100*eV);
-    param->SetMaxEnergy(10*TeV);
+    param->SetMaxEnergy(200*MeV);
     param->SetNumberOfBinsPerDecade(20);
     param->ActivateAngularGeneratorForIonisation(true);
-    //param->SetMuHadLateralDisplacement(false);
-    // param->SetLatDisplacementBeyondSafety(true);
+    // param->SetMuHadLateralDisplacement(true);
+    param->SetLatDisplacementBeyondSafety(true);
     SetPhysicsType(bElectromagnetic);
 }
 
@@ -401,16 +401,19 @@ void PhysListEmStandardSingleSc::ConstructProcess()
             ph->RegisterProcess(kp, particle);
             //ph->RegisterProcess(kss, particle);
 
-        } else if (particleName == "proton" ||
-                   particleName == "anti_proton") {
+        } else if ((particleName == "proton") ||
+                   (particleName == "anti_proton")) {
+
 
             G4hMultipleScattering* pmsc = new G4hMultipleScattering();
-            pmsc->SetEmModel(new G4WentzelVIModel());
-            G4hIonisation* hIoni = new G4hIonisation();
+            pmsc->SetEmModel(new G4WentzelVIModel(),1);
+            // pmsc->SetEmModel(new G4UrbanMscModel(),1);
             pmsc->SetStepLimitType(fUseDistanceToBoundary);
             pmsc->SetLateralDisplasmentFlag(true);
             pmsc->SetSkin(1);
-            // hIoni->SetStepFunction(0.1, 20*um);
+
+            G4hIonisation* hIoni = new G4hIonisation();
+            hIoni->SetStepFunction(0.1, 20*um);
 
             // G4CoulombScattering* csc = new G4CoulombScattering();
             // G4hCoulombScatteringModel* csc_model = new G4hCoulombScatteringModel();

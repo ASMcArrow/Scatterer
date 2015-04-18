@@ -18,9 +18,6 @@ ScattererDetectorSD::ScattererDetectorSD(G4String name):
     SensitiveDetectorName = name;
 }
 
-ScattererDetectorSD::~ScattererDetectorSD()
-{}
-
 void
 ScattererDetectorSD::Initialize(G4HCofThisEvent*)
 {
@@ -57,6 +54,12 @@ ScattererDetectorSD::ProcessHits(G4Step* aStep, G4TouchableHistory* obsolete)
     }
 
     return false;
+}
+
+void ScattererDetectorSD::clear() {
+    if (HitsCollection != nullptr) {
+        delete HitsCollection;
+    }
 }
 
 void

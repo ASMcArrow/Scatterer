@@ -152,7 +152,9 @@ PhysListEmStandardSingleSc::PhysListEmStandardSingleSc(G4int ver,
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 PhysListEmStandardSingleSc::~PhysListEmStandardSingleSc()
-{}
+{
+    deleteProcesses();
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -192,6 +194,7 @@ void PhysListEmStandardSingleSc::ConstructProcess()
     if(verbose > 1) {
         G4cout << "### " << GetPhysicsName() << " Construct Processes " << G4endl;
     }
+    deleteProcesses();
     G4PhysicsListHelper* ph = G4PhysicsListHelper::GetPhysicsListHelper();
 
     // muon & hadron bremsstrahlung and pair production
@@ -228,6 +231,14 @@ void PhysListEmStandardSingleSc::ConstructProcess()
 
     // nuclear stopping
     G4NuclearStopping* pnuc = new G4NuclearStopping();
+    processes.push_back(mub);
+    processes.push_back(mup);
+    processes.push_back(pib);
+    processes.push_back(pip);
+    processes.push_back(kb);
+    processes.push_back(kp);
+    processes.push_back(pb);
+    processes.push_back(pp);
 
     // Add standard EM Processes
     aParticleIterator->reset();
@@ -468,4 +479,11 @@ void PhysListEmStandardSingleSc::ConstructProcess()
     G4VAtomDeexcitation* de = new G4UAtomicDeexcitation();
     G4LossTableManager::Instance()->SetAtomDeexcitation(de);
     de->SetFluo(true);
+}
+
+void PhysListEmStandardSingleSc::deleteProcesses() {
+    for (G4VProcess* process : processes) {
+        delete process;
+    }
+    processes.clear();
 }

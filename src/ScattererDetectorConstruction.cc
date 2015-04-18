@@ -1,5 +1,4 @@
 #include "ScattererDetectorConstruction.hh"
-#include "ScattererDetectorMessenger.hh"
 #include "ScattererDetectorSD.hh"
 
 #include "G4Material.hh"
@@ -22,18 +21,21 @@
 #include "G4RunManager.hh"
 #include "G4VSolid.hh"
 
-ScattererDetectorConstruction* ScattererDetectorConstruction::Instance = 0;
-
 ScattererDetectorConstruction::ScattererDetectorConstruction()
 {
-    Instance = this;
     SlabThickness = 4.375*cm;
-    DetectorMessenger = new ScattererDetectorMessenger(this);
 }
 
-ScattererDetectorConstruction* ScattererDetectorConstruction::GetInstance()
-{
-    return Instance;
+ScattererDetectorConstruction::~ScattererDetectorConstruction() {
+    if (MaterialLogic != nullptr) {
+        delete MaterialLogic;
+    }
+    for (std::pair<std::string, G4Material*> materialPair: MaterialMap) {
+        if (materialPair.second != nullptr) {
+            delete materialPair.second;
+        }
+    }
+    MaterialMap.clear();
 }
 
 G4VPhysicalVolume* ScattererDetectorConstruction::Construct()

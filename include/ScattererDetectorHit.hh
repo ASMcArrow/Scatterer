@@ -11,7 +11,7 @@ class ScattererDetectorHit : public G4VHit
 
 public:
     ScattererDetectorHit();
-    ~ScattererDetectorHit();
+    virtual ~ScattererDetectorHit();
  
     ScattererDetectorHit(const ScattererDetectorHit &right);
     const ScattererDetectorHit& operator = (const ScattererDetectorHit &right);

@@ -12,7 +12,7 @@ class ABCSource : private G4VPrimaryGenerator
 
 public:
     ABCSource();
-    ~ABCSource();
+    virtual ~ABCSource();
 
     void GeneratePrimaryVertex(G4Event *evt);
 

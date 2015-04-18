@@ -24,7 +24,6 @@
 #include "ScattererPhysicsList.hh"
 #include "ScattererDetectorConstruction.hh"
 #include "ScattererPrimaryGeneratorAction.hh"
-#include "ScattererEventAction.hh"
 #include "ScattererRunAction.hh"
 #include "ScattererParallelWorld.hh"
 #include "ScattererActionInitialization.hh"

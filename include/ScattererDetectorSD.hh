@@ -14,11 +14,12 @@ class ScattererDetectorSD : public G4VSensitiveDetector
 
 public:
   ScattererDetectorSD(G4String name);
-  ~ScattererDetectorSD();
+  ~ScattererDetectorSD() {}
 
-  void Initialize(G4HCofThisEvent* ); 
+  virtual void Initialize(G4HCofThisEvent* );
   G4bool ProcessHits(G4Step* aStep, G4TouchableHistory* obsolete);
-  void EndOfEvent(G4HCofThisEvent* HCE);
+  virtual void EndOfEvent(G4HCofThisEvent* HCE);
+  virtual void clear();
  
 private:
   ScattererDetectorHitsCollection* HitsCollection;

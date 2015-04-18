@@ -1,7 +1,6 @@
 #include "ScattererActionInitialization.hh"
 #include "ScattererPrimaryGeneratorAction.hh"
 #include "ScattererRunAction.hh"
-#include "ScattererEventAction.hh"
 
 ScattererActionInitialization::ScattererActionInitialization()
     : G4VUserActionInitialization()

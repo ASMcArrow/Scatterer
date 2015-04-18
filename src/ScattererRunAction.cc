@@ -42,24 +42,10 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
     if(!IsMaster()) return;
 
     ScattererRun *scattererRun = (ScattererRun*)aRun;
-    G4int hitNum = scattererRun->GetNumberOfHits();
-    for (G4int i = 0; i < hitNum; i++)
+    for (int i = 0; i < 200; i++)
     {
-        ScattererDetectorHit* hit = (ScattererDetectorHit*)(scattererRun->GetHit(i));
-        if(hit != NULL)
-        {
-        /*  G4double i = ((*CHC)[h])->GetZID();
-            G4int roundi = floor(i + 0.5);
-            m_Bins[roundi+300] = m_Bins[roundi+300]+((*CHC)[h])->GetEdep(); */
-
-            G4double edep = hit->GetEdep();
-            G4double area = (G4double)hit->GetArea();
-
-            G4int j = hit->GetPos()[0];
-            G4int k = hit->GetPos()[1];
-
-            Cells[j][k] = Cells[j][k]+(hit->GetEdep()/hit->GetArea());
-        }
+        for (int j = 0; j < 200; j++)
+            Cells[i][j] += scattererRun->GetCells()[i][j];
     }
 
     std::ofstream mapFile("Scatterer200_10mln.txt");

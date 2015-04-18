@@ -55,7 +55,7 @@ class PhysListEmStandardSingleSc : public G4VPhysicsConstructor
 public:
   PhysListEmStandardSingleSc(G4int ver = 1);
 
-  // obsolete
+  __attribute__((__deprecated__))
   PhysListEmStandardSingleSc(G4int ver, const G4String& name);
 
   virtual ~PhysListEmStandardSingleSc();
@@ -65,6 +65,9 @@ public:
 
 private:
   G4int  verbose;
+  std::vector<G4VProcess*> processes;
+
+  void deleteProcesses();
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

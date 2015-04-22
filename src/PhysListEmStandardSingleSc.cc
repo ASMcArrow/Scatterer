@@ -123,12 +123,13 @@ PhysListEmStandardSingleSc::PhysListEmStandardSingleSc(G4int ver)
 {
     G4EmParameters* param = G4EmParameters::Instance();
     param->SetVerbose(verbose);
+    //param->SetMscGeomFactor(15);
     param->SetMinEnergy(100*eV);
-    param->SetMaxEnergy(10*TeV);
+    param->SetMaxEnergy(200*MeV);
     param->SetNumberOfBinsPerDecade(20);
     param->ActivateAngularGeneratorForIonisation(true);
-    param->SetMuHadLateralDisplacement(true);
-    param->SetLatDisplacementBeyondSafety(true);
+    //param->SetMuHadLateralDisplacement(true);
+    //param->SetLatDisplacementBeyondSafety(true);
     SetPhysicsType(bElectromagnetic);
 }
 
@@ -142,10 +143,11 @@ PhysListEmStandardSingleSc::PhysListEmStandardSingleSc(G4int ver,
     param->SetVerbose(verbose);
     param->SetMinEnergy(100*eV);
     param->SetMaxEnergy(200*MeV);
+    //param->SetMscGeomFactor(15);
     param->SetNumberOfBinsPerDecade(20);
     param->ActivateAngularGeneratorForIonisation(true);
     // param->SetMuHadLateralDisplacement(true);
-    param->SetLatDisplacementBeyondSafety(true);
+    //param->SetLatDisplacementBeyondSafety(true);
     SetPhysicsType(bElectromagnetic);
 }
 
@@ -407,8 +409,9 @@ void PhysListEmStandardSingleSc::ConstructProcess()
 
             G4hMultipleScattering* pmsc = new G4hMultipleScattering();
             pmsc->SetEmModel(new G4WentzelVIModel(),1);
-            // pmsc->SetEmModel(new G4UrbanMscModel(),1);
+            //pmsc->SetEmModel(new G4UrbanMscModel(),1);
             pmsc->SetStepLimitType(fUseDistanceToBoundary);
+            // pmsc->SetRangeFactor(0.04);
             pmsc->SetLateralDisplasmentFlag(true);
             pmsc->SetSkin(1);
 

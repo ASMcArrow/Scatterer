@@ -18,5 +18,6 @@ void ScattererActionInitialization::BuildForMaster() const
 void ScattererActionInitialization::Build() const
 {
     SetUserAction(new ScattererPrimaryGeneratorAction);
+    SetUserAction(new ScattererEventAction);
     SetUserAction(new ScattererRunAction("FilmDetector"));
 }

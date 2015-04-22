@@ -62,11 +62,12 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
         }
     }
 
-    std::ofstream mapFile("ScattererWentzelDistanceToBoundaryDefaultWater.txt");
+    std::ofstream mapFile("ScattererWentzelWater.txt");
 
     for (G4int xBox = 0; xBox <= 200; xBox++)
     {
         mapFile << "\n";
+
 
         // bloody gnuplot!
         for (G4int yBox = 0; yBox <= 200; yBox++)

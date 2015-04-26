@@ -21,7 +21,7 @@ ScattererPrimaryGeneratorAction::ScattererPrimaryGeneratorAction()
 
     G4SPSEneDistribution* energy = CircleSource->GetEneDist();
     energy->SetEnergyDisType("Gauss");
-    energy->SetBeamSigmaInE(1 *MeV);
+    energy->SetBeamSigmaInE(1.58 *MeV);
     energy->SetMonoEnergy(219 *MeV);
 
     G4SPSPosDistribution* position = CircleSource->GetPosDist();

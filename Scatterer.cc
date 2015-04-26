@@ -44,7 +44,7 @@ int main(int argc,char** argv)
 #endif
 
     ScattererDetectorConstruction* massWorld = new ScattererDetectorConstruction;
-   // massWorld->SetSlabThickness(4.375*cm);
+    // massWorld->SetSlabThickness(4.375*cm);
     massWorld->RegisterParallelWorld(new ScattererParallelWorld("ScattererParallelWorld"));
 
     runManager->SetUserInitialization(massWorld);
@@ -66,7 +66,12 @@ int main(int argc,char** argv)
     ui->SessionStart();
     delete ui;
 #else
+    std::clock_t start;
+    double duration;
+
     runManager->BeamOn(100000000);
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    G4cout << "duration: " << duration << ' sec \n' << G4endl;
 #endif
 
     delete runManager;

@@ -62,7 +62,7 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
         }
     }
 
-    std::ofstream mapFile("ScattererWentzelWater.txt");
+    std::ofstream mapFile("ScattererUrbanWater15.txt");
 
     for (G4int xBox = 0; xBox <= 200; xBox++)
     {

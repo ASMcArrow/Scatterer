@@ -20,14 +20,13 @@ public:
   virtual void RecordEvent(const G4Event*);
   virtual void Merge(const G4Run*);
 
-  G4int GetNumberOfHits() const { return HitVector.size();}
-  ScattererDetectorHit* GetHit(G4int i) {return HitVector[i];}
+  G4double** GetCells() { return Cells; }
 
 private:
   G4String CollName;
   G4int CollectionID;
-  std::vector<ScattererDetectorHit*> HitVector;
   G4bool Verbose;
+  G4double** Cells;
 };
 
 #endif // SCATTERERRUN_H

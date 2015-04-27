@@ -9,11 +9,20 @@ ScattererRun::ScattererRun(const G4String detectorName, G4bool verbose) : G4Run(
     CollName = detector->GetCollectionName(0);
     CollectionID = SDman->GetCollectionID(CollName);
     Verbose = verbose;
+    Cells = new G4double*[200];
+    for (int i = 0; i < 200; i++)
+    {
+        Cells[i] = new G4double[200];
+        for (int j = 0; j < 200; j++)
+            Cells[i][j] = 0;
+    }
 }
 
-ScattererRun::~ScattererRun()
-{
-    HitVector.clear();
+ScattererRun::~ScattererRun() {
+    for (int i = 0; i < 200; i++) {
+        delete[] Cells[i];
+    }
+    delete[] Cells;
 }
 
 void ScattererRun::RecordEvent(const G4Event* aEvent)
@@ -27,28 +36,18 @@ void ScattererRun::RecordEvent(const G4Event* aEvent)
         if(HC!=NULL)
         {
             //ScattererDetectorHit *hit = 0;
-            for (G4int j = 0; j < HC->entries(); j++)
+            for (G4int i = 0; i < HC->entries(); i++)
             {
-                ScattererDetectorHit *hit = (ScattererDetectorHit*)(HC->GetHit(j));
+                ScattererDetectorHit *hit = (ScattererDetectorHit*)(HC->GetHit(i));
                 if (Verbose)
                 {
-                    G4cout << "HitsVector Initial: " << "j = "<< j << " Energy deposition is " << hit->GetEdep()
+                    G4cout << "HitsVector Initial: " << "i = "<< i << " Energy deposition is " << hit->GetEdep()
                            << " Position is" << hit->GetPos()[0] << G4endl;
                 }
-                ScattererDetectorHit *copyHit = new ScattererDetectorHit(*hit);
-                HitVector.push_back((ScattererDetectorHit*)(copyHit));
-            }
+                G4int j = hit->GetPos()[0];
+                G4int k = hit->GetPos()[1];
 
-            if (HC->entries() != 0)
-            {
-                if(Verbose)
-                {
-                    for (G4int l = 0; l < HitVector.size(); l++)
-                    {
-                        G4cout << "HitsVector Recorded: " << "l=" << l << " Energy deposition is " << HitVector[l]->GetEdep()
-                               <<  " Position is " << HitVector[l]->GetPos()[0] << G4endl;
-                    }
-                }
+                Cells[j][k] += hit->GetEdep()/hit->GetArea();
             }
         }
     }
@@ -57,8 +56,11 @@ void ScattererRun::RecordEvent(const G4Event* aEvent)
 void ScattererRun::Merge(const G4Run * aRun)
 {
     const ScattererRun *localRun = static_cast<const ScattererRun*>(aRun);
-    for (G4int i = 0; i < localRun -> HitVector.size(); i++)
-        HitVector.push_back(localRun -> HitVector[i]);
+    for (int i = 0; i < 200; i++)
+    {
+        for (int j = 0; j < 200; j++)
+            Cells[i][j] += localRun->Cells[i][j];
+    }
 
     G4Run::Merge(aRun);
 }

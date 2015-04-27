@@ -143,7 +143,7 @@ PhysListEmStandardSingleSc::PhysListEmStandardSingleSc(G4int ver,
     param->SetVerbose(verbose);
     param->SetMinEnergy(100*eV);
     param->SetMaxEnergy(200*MeV);
-    //param->SetMscGeomFactor(15);
+    param->SetMscGeomFactor(15);
     param->SetNumberOfBinsPerDecade(20);
     param->ActivateAngularGeneratorForIonisation(true);
     // param->SetMuHadLateralDisplacement(true);

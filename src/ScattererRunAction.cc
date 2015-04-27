@@ -48,7 +48,7 @@ void ScattererRunAction::EndOfRunAction(const G4Run* aRun)
             Cells[i][j] += scattererRun->GetCells()[i][j];
     }
 
-    std::ofstream mapFile("Scatterer200_10mln.txt");
+    std::ofstream mapFile("ScattererUrban15.txt");
 
     for (G4int xBox = 0; xBox <= 200; xBox++)
     {
